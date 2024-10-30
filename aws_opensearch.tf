@@ -1,6 +1,6 @@
 resource "aws_opensearch_domain" "example_domain" {
   domain_name    = "example-domain"
-  engine_version = "OpenSearch_2.3"
+  engine_version = "OpenSearch_2.13"
 
   # Cluster configuration
   cluster_config {
