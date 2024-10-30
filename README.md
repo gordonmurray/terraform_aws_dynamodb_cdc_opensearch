@@ -23,6 +23,48 @@ flowchart TD
     end
 ```
 
+## Sample data to DDB using AWSCurl
+
+```
+python3 -m venv .venv
+
+source .venv/bin/activate
+
+pip install awscurl
+
+(add credentials to default in /home/xxx/.aws/credentials)
+```
+
+```
+awscurl --region eu-west-1 --service dynamodb \
+  -X POST "https://dynamodb.eu-west-1.amazonaws.com" \
+  -H "Content-Type: application/x-amz-json-1.0" \
+  -H "X-Amz-Target: DynamoDB_20120810.PutItem" \
+  -d '{
+      "TableName": "users",
+      "Item": {
+          "id": {"S": "user345"},
+          "email": {"S": "user345@example.com"}
+      }
+  }'
+
+```
+
+```
+awscurl --region eu-west-1 --service dynamodb \
+  -X POST "https://dynamodb.eu-west-1.amazonaws.com" \
+  -H "Content-Type: application/x-amz-json-1.0" \
+  -H "X-Amz-Target: DynamoDB_20120810.PutItem" \
+  -d '{
+      "TableName": "products",
+      "Item": {
+          "product_id": {"S": "prod123"},
+          "category": {"S": "beverages"},
+          "expiration_date": {"S": "2024-12-31"}
+      }
+  }'
+```
+
 
 ## Estimated cost
 
