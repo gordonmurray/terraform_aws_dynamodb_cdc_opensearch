@@ -1,0 +1,11 @@
+aws_account_id = "000000000"
+
+region = "eu-west-1"
+
+vpc_id = "vpc-000000000"
+
+subnets = [
+  "subnet-000000000",
+  "subnet-000000000",
+  "subnet-000000000"
+]
