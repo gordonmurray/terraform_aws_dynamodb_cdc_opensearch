@@ -1,6 +1,12 @@
-# terraform_aws_dynamodb_cdc_opensearch
+# DynamoDB Change Data Capture (CDC) to OpenSearch using Terraform
 
-This setup uses Terraform to build a simple AWS stack with DynamoDB and OpenSearch. There are two DynamoDB tables: one for users and one for grocery products, both encrypted with KMS and configured with streams to pipe changes into OpenSearch. OpenSearch is set up with a minimal instance type (t3.small.search) to keep costs low, and everything’s locked down with IAM roles for secure access. It’s a straightforward way to get searchable, real-time data ingestion for lightweight applications or testing.
+This project provides a streamlined solution for implementing Change Data Capture (CDC) from DynamoDB to OpenSearch.
+
+By capturing and storing these changes, this project helps maintain operational visibility, especially during high traffic or potential DynamoDB throttling events, ensuring data consistency and faster query capabilities when performance matters most.
+
+This setup uses Terraform to build a simple AWS stack with DynamoDB and OpenSearch. There are two DynamoDB tables: one for users and one for grocery products, both encrypted with KMS and configured with streams to pipe changes into OpenSearch.
+
+ OpenSearch is set up with a minimal instance type (t3.small.search) to keep costs low, and everything’s locked down with IAM roles for secure access. It’s a straightforward way to get searchable, real-time data ingestion for lightweight applications or testing.
 
 ## Overview diagram
 
@@ -32,7 +38,7 @@ source .venv/bin/activate
 
 pip install awscurl
 
-(add credentials to default in /home/xxx/.aws/credentials)
+(add credentials to default in ~/.aws/credentials)
 ```
 
 ```
