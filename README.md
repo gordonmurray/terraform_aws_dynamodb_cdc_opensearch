@@ -29,7 +29,7 @@ flowchart TD
     end
 ```
 
-## Sample data to DDB using AWSCurl
+## Sample data to DynamoDB using AWSCurl
 
 ```
 python3 -m venv .venv
@@ -41,6 +41,8 @@ pip install awscurl
 (add credentials to default in ~/.aws/credentials)
 ```
 
+Add a user
+
 ```
 awscurl --region eu-west-1 --service dynamodb \
   -X POST "https://dynamodb.eu-west-1.amazonaws.com" \
@@ -49,27 +51,46 @@ awscurl --region eu-west-1 --service dynamodb \
   -d '{
       "TableName": "users",
       "Item": {
-          "id": {"S": "user345"},
-          "email": {"S": "user345@example.com"}
+          "id": {"S": "user123"},
+          "email": {"S": "user123@example.com"}
       }
   }'
-
 ```
+
+Update the user
 
 ```
 awscurl --region eu-west-1 --service dynamodb \
   -X POST "https://dynamodb.eu-west-1.amazonaws.com" \
   -H "Content-Type: application/x-amz-json-1.0" \
-  -H "X-Amz-Target: DynamoDB_20120810.PutItem" \
+  -H "X-Amz-Target: DynamoDB_20120810.UpdateItem" \
   -d '{
-      "TableName": "products",
-      "Item": {
-          "product_id": {"S": "prod123"},
-          "category": {"S": "beverages"},
-          "expiration_date": {"S": "2024-12-31"}
+      "TableName": "users",
+      "Key": {
+          "id": {"S": "user123"}
+      },
+      "UpdateExpression": "SET email = :newEmail",
+      "ExpressionAttributeValues": {
+          ":newEmail": {"S": "updated_user123@example.com"}
       }
   }'
 ```
+
+Delete the user
+
+```
+awscurl --region eu-west-1 --service dynamodb \
+  -X POST "https://dynamodb.eu-west-1.amazonaws.com" \
+  -H "Content-Type: application/x-amz-json-1.0" \
+  -H "X-Amz-Target: DynamoDB_20120810.DeleteItem" \
+  -d '{
+      "TableName": "users",
+      "Key": {
+          "id": {"S": "user123"}
+      }
+  }'
+```
+
 
 
 ## Estimated cost
@@ -131,3 +152,6 @@ awscurl --region eu-west-1 --service dynamodb \
 ┃ main                                               ┃           $90 ┃           - ┃        $90 ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━┛
 ```
+
+
+
