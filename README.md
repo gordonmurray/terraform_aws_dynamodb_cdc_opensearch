@@ -91,6 +91,39 @@ awscurl --region eu-west-1 --service dynamodb \
   }'
 ```
 
+## Opensearch
+
+The result is an index in Opensearch matching the data from the DynamoDB table.
+
+```
+      {
+        "_index": "table-index",
+        "_id": "userc85b1329",
+        "_score": 1.0,
+        "_source": {
+          "id": "userc85b1329",
+          "email": "userc85b1329@example.com"
+        }
+      },
+      {
+        "_index": "table-index",
+        "_id": "user2fb241c3",
+        "_score": 1.0,
+        "_source": {
+          "id": "user2fb241c3",
+          "email": "user2fb241c3@example.com"
+        }
+      },
+      {
+        "_index": "table-index",
+        "_id": "usera3a064d0",
+        "_score": 1.0,
+        "_source": {
+          "id": "usera3a064d0",
+          "email": "usera3a064d0@example.com"
+        }
+      }
+```
 
 
 ## Estimated cost
